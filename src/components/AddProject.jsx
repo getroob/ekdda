@@ -67,8 +67,19 @@ const AddProject = () => {
         </Row>
 
         <Row>
-          <Link to="/" className="d-flex justify-content-center mt-5">
-            <Button className="w-50" variant="success" type="button">
+          <Link
+            to="/"
+            className="d-flex justify-content-center mt-5"
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              className="me-1 w-50"
+              variant="outline-danger"
+              type="button"
+            >
+              Ακυρωση
+            </Button>
+            <Button className="ms-1 w-50" variant="success" type="button">
               Υποβολη
             </Button>
           </Link>

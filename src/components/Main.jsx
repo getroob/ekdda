@@ -7,16 +7,20 @@ const Main = ({ projects }) => {
   const { width, height } = useWindowSize();
 
   return (
-    <Container className="my-5">
-      {console.log(width, height)}
+    <Container fluid style={{ maxHeight: height - 56, overflow: "hidden" }}>
       <Row>
-        <Col xs={12} md={8}>
+        <Col className="px-0" xs={12} md={8}>
           <Map />
         </Col>
-        <Col xs={12} md={4}>
+        <Col
+          className="px-0"
+          xs={12}
+          md={4}
+          style={{ maxHeight: height - 56, overflowY: "scroll" }}
+        >
           <SingleProject key={"add"} add={true} />
           {projects.map((project, index) => (
-            <SingleProject key={index} project={{ projectID: project }} />
+            <SingleProject key={index} project={project} />
           ))}
         </Col>
       </Row>
