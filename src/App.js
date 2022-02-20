@@ -11,7 +11,7 @@ import Project from "./components/Project";
 import projects from "./data/data";
 
 const App = () => {
-  // localStorage.setItem("ekdda-datsa", JSON.stringify(projects));
+  // localStorage.setItem("ekdda-data", JSON.stringify(projects));
   return (
     <Router>
       <TopNav />
