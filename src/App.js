@@ -11,13 +11,12 @@ import Project from "./components/Project";
 import projects from "./data/data";
 
 const App = () => {
-  // localStorage.setItem("ekdda-data", JSON.stringify(projects));
-  console.log(JSON.parse(localStorage.getItem("ekdda-data")));
+  //localStorage.setItem("ekdda-data", JSON.stringify(projects));
   return (
     <Router>
       <TopNav />
       <Routes>
-        <Route path="/" element={<Main projects={projects} />} />
+        <Route path="/" element={<Main />} />
         <Route path="/add-project" element={<AddProject />} />
         <Route path="/area-projects/:city" element={<AreaProjects />} />
         <Route path="/project/:projectID" element={<Project />} />

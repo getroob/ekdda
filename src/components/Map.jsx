@@ -7,26 +7,7 @@ const Map = ({markerId}) => {
   const [map, setMap] = useState(null);
   const [selectedMarkers, setSelectedMarkers] = useState([]);
   const [didRun, setRun] = useState(false);
-  const markers = {
-    1:{
-      id: 1,
-      title: "Hello world",
-      description: "Lorem ipsum",
-      latlng: { lat: 23.8, lng: 38}
-    },
-    2:{
-      id: 2,
-      title: "Hello world",
-      description: "Lorem ipsum",
-      latlng: { lat: 23.85, lng: 38}
-    },
-    3:{
-      id: 3,
-      title: "Hello world",
-      description: "Lorem ipsum",
-      latlng: { lat: 23.88, lng: 38}
-    },
-  };
+  const markers = JSON.parse(localStorage.getItem("ekdda-data"));
 
   const updateList = useCallback(() => {
     let newList = [];
@@ -43,7 +24,7 @@ const Map = ({markerId}) => {
   useEffect(() => {
       if (!map) return;
       if(markerId && !didRun) {
-        let cords = markers[markerId].latlng;
+        let cords = markers.find(m => m.projectId = markerId).latlng;
         map.setView([ cords.lng, cords.lat ], 14);
         setRun(true);
       }
@@ -52,10 +33,6 @@ const Map = ({markerId}) => {
         map.off("moveend", updateList);
       };
   }, [map, updateList]);
-
-  useEffect(() => {
-    console.log(selectedMarkers);
-  }, [selectedMarkers]);
 
   return (
     <MapContainer
@@ -72,9 +49,9 @@ const Map = ({markerId}) => {
         spiderfyDistanceMultiplier={1}
         showCoverageOnHover={false}
       >
-        {Object.values(markers).map((m) => (
-          <Marker key={m.id} position={[m.latlng.lng, m.latlng.lat]} data={m}>
-            <Popup key={m.id}>
+        {markers.map((m) => (
+          <Marker key={m.projectID} position={[m.latlng.lng, m.latlng.lat]} data={m}>
+            <Popup>
               <div>
                 <b>{m.title}</b>
               </div>

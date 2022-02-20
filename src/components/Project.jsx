@@ -16,12 +16,6 @@ const Project = () => {
   const { projectID } = useParams();
   const [project, setProject] = useState({});
   const [comment, setComment] = useState("");
-  const projects = JSON.parse(localStorage.getItem("ekdda-data"));
-
-  const getProject = () => {
-    const pr = projects.find((p) => p.projectID == projectID);
-    setProject(pr);
-  };
 
   const postComment = (event) => {
     event.preventDefault();
@@ -35,7 +29,10 @@ const Project = () => {
     setComment("");
   };
 
-  useEffect(() => getProject(), [projectID]);
+  useEffect(() => {
+    let projects = JSON.parse(localStorage.getItem("ekdda-data"));
+    setProject(projects.find((p) => p.projectID == projectID));
+  }, [projectID]);
 
   return (
     <Container fluid className="p-5">

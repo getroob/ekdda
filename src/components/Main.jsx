@@ -3,8 +3,9 @@ import useWindowSize from "../tools/dimentions";
 import Map from "./Map";
 import SingleProject from "./SingleProject";
 
-const Main = ({ projects }) => {
+const Main = () => {
   const { width, height } = useWindowSize();
+  const projects = JSON.parse(localStorage.getItem("ekdda-data"));
 
   return (
     <Container fluid style={{ maxHeight: height - 56, overflow: "hidden" }}>
