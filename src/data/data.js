@@ -6,10 +6,10 @@ const projects = [
       "Αντικείμενο του έργου είναι η αντικατάσταση φωτιστικών σωμάτων με φωτιστικά νέας τεχνολογίας LED. \n\n\nΟι εργασίες περιλαμβάνουν: Αντικατάσταση των φωτιστικών σωμάτων με άλλα νέας τεχνολογίας LED. Αποξήλωση και απομάκρυνση του παλαιού εναερίου δικτύου όπου είναι αναγκαίο. Κατασκευή νέου εναερίου δικτύου όπου είναι αναγκαίο. Αποξήλωση παλαιών ιστών και των φωτιστικών αυτών και την τοποθέτηση νέων. Κατασκευή νέου υπογείου δικτύου όπου είναι αναγκαίο.",
     startDate: "02/02/2021",
     endDate: "30/9/2022",
-    municipality: 1,
-    costructor: "ΠΕΤΚΑ ΑΕ",
+    municipality: "Δημος Αθηναιων",
+    constructor: "ΠΕΤΚΑ ΑΕ",
     budget: 1425000,
-    latlng: { lat: 23.88, lng: 38},
+    latlng: { lat: 23.7275, lng: 37.9838 },
     progress: [
       {
         author: "Τεχνικος 1",
@@ -41,10 +41,10 @@ const projects = [
       "Ανοιχτός διαγωνισμός για την ανάθεση του έργου «ΑΝΑΠΛΑΣΗ ΠΕΡΙΒΑΛΛΟΝΤΟΣ ΧΩΡΟΥ ΣΤΗΝ ΠΕΡΙΟΧΗ “ΠΑΝΤΑΒΡΕΧΕΙ” ΤΟΥ ΔΗΜΟΥ ΚΑΡΠΕΝΗΣΙΟΥ» με κωδικό 2017ΕΠ05610031 της Σ.Α. ΕΠ0561 του Π.Δ.Ε. και χρηματοδότηση μέσω του Επιχειρησιακού Προγράμματος «ΣΤΕΡΕΑ ΕΛΛΑΔΑ 2014-2020» με προϋπολογισμό 240.000,00€ (με ΦΠΑ)ΤΟΣ ΧΩΡΟΥ ΣΤΗΝ ΠΕΡΙΟΧΗ “ΠΑΝΤΑΒΡΕΧΕΙ” ΤΟΥ ΔΗΜΟΥ ΚΑΡΠΕΝΗΣΙΟΥ” ΠΕ Ευρυτανίας",
     startDate: "01/06/2022",
     endDate: "30/9/2022",
-    municipality: 3,
-    costructor: "Ανοιχτος Διαγωνισμός",
+    municipality: "Περιφερεια Στερεας Ελλαδας",
+    constructor: "Ανοιχτος Διαγωνισμός",
     budget: 240000,
-    latlng: { lat: 23.88, lng: 38},
+    latlng: { lat: 21.7936, lng: 38.9149 },
     progress: [
       {
         author: "Τεχνικος 1",
@@ -72,13 +72,13 @@ const projects = [
     projectID: 3,
     title: "Ανέγερση νέου νηπιαγωγείου Αλιβερίου",
     description:
-      "loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore ",
+      "Περίληψη διακήρυξης συνοπτικού έργου: Ανέγερση νέου νηπιαγωγείου Αλιβερίου. Δ/ΝΣΗ ΤΕΧΝΙΚΩΝ ΕΡΓΩΝ ΠΕ ΕΥΒΟΙΑΣ, ΧΑΪΝΑ 93, 34132, ΧΑΛΚΙΔΑ, ΤΗΛ: 2221353810- 2221353818, ΚΟΤΣΩΠΟΥΛΟΣ ΑΝΤΩΝΗΣ- ΜΕΡΤΙΡΗ ΠΑΡΑΣΚΕΥΗ",
     startDate: "02/02/2021",
     endDate: "30/9/2022",
-    municipality: 3,
-    costructor: "Ανοιχτος Διαγωνισμός",
+    municipality: "Περιφερεια Στερεας Ελλαδας",
+    constructor: "Ανοιχτος Διαγωνισμός",
     budget: 712425,
-    latlng: { lat: 23.88, lng: 38},
+    latlng: { lat: 22.4337, lng: 38.8997 },
     progress: [
       {
         author: "Τεχνικος 1",
@@ -109,10 +109,10 @@ const projects = [
       "«Δωμάτια» με φοίνικες, νερό και μανόλιες αλλά και μία πλατεία Αριστοτέλους που θα θυμίζει «καθρέφτη» προτείνει να δημιουργηθούν στο νέο μνημειακό άξονα της Θεσσαλονίκης, από την οδό Εγνατία έως και την παραλιακή Λεωφόρο Νίκης",
     startDate: "24/08/2023",
     endDate: "30/9/2025",
-    municipality: 2,
-    costructor: "Ανοιχτος Διαγωνισμος",
+    municipality: "Δημος Θεσσαλονίκης",
+    constructor: "Ανοιχτος Διαγωνισμος",
     budget: 13985000,
-    latlng: { lat: 23.88, lng: 38},
+    latlng: { lat: 22.9444, lng: 40.6401 },
     progress: [
       {
         author: "Τεχνικος 1",

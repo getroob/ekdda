@@ -43,15 +43,15 @@ const Project = () => {
               <Card.Header>{project.title}</Card.Header>
               <Card.Body>
                 <Card.Title>
-                  {project.builder} - {project.receiver}
+                  {project.constructor} - {project.municipality}
                 </Card.Title>
                 <Card.Text>{project.description}</Card.Text>
                 {/* <Button variant="primary">Go somewhere</Button> */}
               </Card.Body>
             </Card>
           </Row>
-          <Row className="my-5">
-            <Map />
+          <Row className="my-5" style={{ height: "50vw" }}>
+            <Map markerId={projectID} />
           </Row>
           <Row>
             <ListGroup className="p-0">

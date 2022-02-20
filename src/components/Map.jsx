@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
 
-const Map = ({markerId}) => {
+const Map = ({ markerId }) => {
   const [map, setMap] = useState(null);
   const [selectedMarkers, setSelectedMarkers] = useState([]);
   const [didRun, setRun] = useState(false);
@@ -22,17 +22,17 @@ const Map = ({markerId}) => {
   }, [selectedMarkers, map]);
 
   useEffect(() => {
-      if (!map) return;
-      if(markerId && !didRun) {
-        let cords = markers.find(m => m.projectId = markerId).latlng;
-        map.setView([ cords.lng, cords.lat ], 14);
-        setRun(true);
-      }
-      map.on("moveend", updateList);
-      return () => {
-        map.off("moveend", updateList);
-      };
-  }, [map, updateList]);
+    if (!map) return;
+    if (markerId && !didRun) {
+      let cords = markers.find((m) => m.projectID == markerId).latlng;
+      map.setView([cords.lng, cords.lat], 14);
+      setRun(true);
+    }
+    map.on("moveend", updateList);
+    return () => {
+      map.off("moveend", updateList);
+    };
+  }, [map, updateList, markerId]);
 
   return (
     <MapContainer
@@ -50,7 +50,11 @@ const Map = ({markerId}) => {
         showCoverageOnHover={false}
       >
         {markers.map((m) => (
-          <Marker key={m.projectID} position={[m.latlng.lng, m.latlng.lat]} data={m}>
+          <Marker
+            key={m.projectID}
+            position={[m.latlng.lng, m.latlng.lat]}
+            data={m}
+          >
             <Popup>
               <div>
                 <b>{m.title}</b>
@@ -65,7 +69,7 @@ const Map = ({markerId}) => {
 };
 
 Map.defaultProps = {
-  markerId: null
-  };
+  markerId: null,
+};
 
 export default Map;
