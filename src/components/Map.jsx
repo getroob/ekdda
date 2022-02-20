@@ -3,46 +3,37 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
 
-const Map = () => {
-  // const map = useMap();
+const Map = ({markerId}) => {
   const [map, setMap] = useState(null);
   const [selectedMarkers, setSelectedMarkers] = useState([]);
-  const positions = [
-    { city: "Athens", lng: 38, lat: 24 },
-    { city: "Thessaloniki", lng: 38, lat: 24 },
-    { city: "Trikala", lng: 38, lat: 24 },
-  ];
-  const markers = [
-    {
+  const [didRun, setRun] = useState(false);
+  const markers = {
+    1:{
       id: 1,
       title: "Hello world",
       description: "Lorem ipsum",
-      lng: 38,
-      lat: 23.8,
+      latlng: { lat: 23.8, lng: 38}
     },
-    {
+    2:{
       id: 2,
       title: "Hello world",
       description: "Lorem ipsum",
-      lng: 38,
-      lat: 23.85,
+      latlng: { lat: 23.85, lng: 38}
     },
-    {
+    3:{
       id: 3,
       title: "Hello world",
       description: "Lorem ipsum",
-      lng: 38,
-      lat: 23.88,
+      latlng: { lat: 23.88, lng: 38}
     },
-  ];
+  };
 
   const updateList = useCallback(() => {
     let newList = [];
     map.eachLayer((layer) => {
       if (layer instanceof L.Marker) {
-        console.log(layer);
-        if (map.getBounds().contains(layer.getLatLng())) {
-          newList.push(layer._popup._latlng);
+        if (map.getBounds().contains(layer.getLatLng()) && layer.options.data) {
+          newList.push(layer.options.data);
         }
       }
     });
@@ -50,12 +41,16 @@ const Map = () => {
   }, [selectedMarkers, map]);
 
   useEffect(() => {
-    if (map) {
+      if (!map) return;
+      if(markerId && !didRun) {
+        let cords = markers[markerId].latlng;
+        map.setView([ cords.lng, cords.lat ], 14);
+        setRun(true);
+      }
       map.on("moveend", updateList);
       return () => {
         map.off("moveend", updateList);
       };
-    }
   }, [map, updateList]);
 
   useEffect(() => {
@@ -67,7 +62,7 @@ const Map = () => {
       whenCreated={setMap}
       center={[38, 24]}
       zoom={7}
-      className="main"
+      className="map"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -77,9 +72,9 @@ const Map = () => {
         spiderfyDistanceMultiplier={1}
         showCoverageOnHover={false}
       >
-        {markers.map((m) => (
-          <Marker key={m.id} position={[m.lng, m.lat]}>
-            <Popup>
+        {Object.values(markers).map((m) => (
+          <Marker key={m.id} position={[m.latlng.lng, m.latlng.lat]} data={m}>
+            <Popup key={m.id}>
               <div>
                 <b>{m.title}</b>
               </div>
@@ -91,5 +86,9 @@ const Map = () => {
     </MapContainer>
   );
 };
+
+Map.defaultProps = {
+  markerId: null
+  };
 
 export default Map;
