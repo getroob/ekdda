@@ -1,17 +1,18 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { useState } from "react";
+import { Col, Container, Row, Card } from "react-bootstrap";
 import useWindowSize from "../tools/dimentions";
 import Map from "./Map";
 import SingleProject from "./SingleProject";
 
 const Main = () => {
   const { width, height } = useWindowSize();
-  const projects = JSON.parse(localStorage.getItem("ekdda-data"));
+  const [projects, setProjects] = useState(JSON.parse(localStorage.getItem("ekdda-data")));
 
   return (
-    <Container fluid style={{ maxHeight: height - 56, overflow: "hidden" }}>
-      <Row>
+    <Container fluid style={{ minHeight: height - 56, overflow: "hidden" }}>
+      <Row style={{ minHeight: 'inherit'}}>
         <Col className="px-0" xs={12} md={8}>
-          <Map />
+          <Map setSelectedList={setProjects}/>
         </Col>
         <Col
           className="px-0"
@@ -20,9 +21,11 @@ const Main = () => {
           style={{ maxHeight: height - 56, overflowY: "scroll" }}
         >
           <SingleProject key={"add"} add={true} />
-          {projects.map((project, index) => (
+          {projects.length > 0 ? projects.map((project, index) => (
             <SingleProject key={index} project={project} />
-          ))}
+          )): <Card.Body>
+          <Card.Text>Δεν υπάρχουν έργα στην περιοχή</Card.Text>
+        </Card.Body>}
         </Col>
       </Row>
     </Container>

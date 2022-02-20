@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
 
-const Map = ({ markerId }) => {
+const Map = ({ markerId, setSelectedList }) => {
   const [map, setMap] = useState(null);
   const [selectedMarkers, setSelectedMarkers] = useState([]);
   const [didRun, setRun] = useState(false);
@@ -12,13 +12,16 @@ const Map = ({ markerId }) => {
   const updateList = useCallback(() => {
     let newList = [];
     map.eachLayer((layer) => {
-      if (layer instanceof L.Marker) {
-        if (map.getBounds().contains(layer.getLatLng()) && layer.options.data) {
-          newList.push(layer.options.data);
-        }
+      if(layer instanceof L.MarkerClusterGroup) {
+        layer.getLayers().length && layer.getLayers().map(m => {
+          if (layer.hasLayer && map.getBounds().contains(m.getLatLng()) && m.options.data) {
+            newList.push(m.options.data); 
+          }
+        });
       }
     });
     setSelectedMarkers(newList);
+    setSelectedList(newList);
   }, [selectedMarkers, map]);
 
   useEffect(() => {
@@ -70,6 +73,7 @@ const Map = ({ markerId }) => {
 
 Map.defaultProps = {
   markerId: null,
+  setSelectedList: () => {},
 };
 
 export default Map;
