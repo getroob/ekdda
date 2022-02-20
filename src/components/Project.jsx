@@ -3,7 +3,7 @@ import {
   Button,
   Card,
   Container,
-  Form,
+  Col,
   FormControl,
   ListGroup,
   Row,
@@ -38,7 +38,8 @@ const Project = () => {
     <Container fluid className="p-5">
       {Object.keys(project).length > 0 ? (
         <>
-          <Row>
+          <Row className="mb-4">
+          <Col className="mr-2" xs={12} md={8} style={{ paddingLeft: "0px"}}>
             <Card className="px-0">
               <Card.Header>{project.title}</Card.Header>
               <Card.Body>
@@ -49,9 +50,10 @@ const Project = () => {
                 {/* <Button variant="primary">Go somewhere</Button> */}
               </Card.Body>
             </Card>
-          </Row>
-          <Row className="my-5" style={{ height: "50vw" }}>
-            <Map markerId={projectID} />
+            </Col>
+            <Col className="px-0" xs={12} md={4} style={{ height: "20vw" }}>
+              <Map markerId={projectID} />
+            </Col>
           </Row>
           <Row>
             <ListGroup className="p-0">
