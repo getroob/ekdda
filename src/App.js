@@ -8,31 +8,11 @@ import TopNav from "./components/TopNav";
 import AddProject from "./components/AddProject";
 import AreaProjects from "./components/AreaProjects";
 import Project from "./components/Project";
-
-const projects = [
-  {
-    projectID: 1,
-    title: "ldifhwoeifnwefnqfnwe",
-    description:
-      "loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore loremljsdnfoienfowenf ekjfdneoifnoew fwefoewf efowe flenfjwore ",
-    startDate: "02/02/2021",
-    endDate: "30/9/2022",
-    receiver: "Δημος Αθηναιων",
-    builder: "Συνεργειο του Δημου",
-    budget: 20000,
-  },
-  {
-    projectID: 2,
-  },
-  {
-    projectID: 3,
-  },
-  {
-    projectID: 4,
-  },
-];
+import projects from "./data/data";
 
 const App = () => {
+  // localStorage.setItem("ekdda-data", JSON.stringify(projects));
+  console.log(JSON.parse(localStorage.getItem("ekdda-data")));
   return (
     <Router>
       <TopNav />

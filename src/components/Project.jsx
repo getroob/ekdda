@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Card,
   Container,
@@ -9,56 +10,82 @@ import {
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Map from "./Map";
+import { useEffect, useState } from "react";
 
 const Project = () => {
   const { projectID } = useParams();
-  console.log(projectID);
+  const [project, setProject] = useState({});
+  const [comment, setComment] = useState("");
+  const projects = JSON.parse(localStorage.getItem("ekdda-data"));
+
+  const getProject = () => {
+    const pr = projects.find((p) => p.projectID == projectID);
+    setProject(pr);
+  };
+
+  const postComment = (event) => {
+    event.preventDefault();
+    setProject({
+      ...project,
+      progress: [
+        ...project.progress,
+        { author: "Τεχνικος 2", date: "20/02/2022", text: comment },
+      ],
+    });
+    setComment("");
+  };
+
+  useEffect(() => getProject(), [projectID]);
+
   return (
     <Container fluid className="p-5">
-      <Row>
-        <Card className="px-0">
-          <Card.Header>Τιτλος Εργου</Card.Header>
-          <Card.Body>
-            <Card.Title>Αποδεκτης - Αναδοχος</Card.Title>
-            <Card.Text>
-              Περιγραφη Lorem ipsum dolor, sit amet consectetur adipisicing
-              elit. Possimus error modi reiciendis recusandae dolore facere
-              aperiam qui distinctio numquam eaque, reprehenderit,
-              necessitatibus natus non odit consequatur velit voluptates
-              doloribus culpa?
-            </Card.Text>
-            {/* <Button variant="primary">Go somewhere</Button> */}
-          </Card.Body>
-        </Card>
-      </Row>
-      <Row className="my-5">
-        <Map />
-      </Row>
-      <Row>
-        <ListGroup>
-          <ListGroup.Item active>Προοδος Εργου</ListGroup.Item>
-          <ListGroup.Item>
-            Τεχνικος 1 - 20 Φεβ 2022 - Morbi leo risus
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Τεχνικος 1 - 20 Φεβ 2022 - Morbi leo risus
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Τεχνικος 1 - 20 Φεβ 2022 - Morbi leo risus
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Τεχνικος 1 - 20 Φεβ 2022 - Morbi leo risus
-          </ListGroup.Item>
-          <Form className="d-flex mt-2">
-            <FormControl
-              type="search"
-              placeholder="Νεο Σχολιο..."
-              className="me-2"
-            />
-            <Button variant="outline-success">Αποστολη</Button>
-          </Form>
-        </ListGroup>
-      </Row>
+      {Object.keys(project).length > 0 ? (
+        <>
+          <Row>
+            <Card className="px-0">
+              <Card.Header>{project.title}</Card.Header>
+              <Card.Body>
+                <Card.Title>
+                  {project.builder} - {project.receiver}
+                </Card.Title>
+                <Card.Text>{project.description}</Card.Text>
+                {/* <Button variant="primary">Go somewhere</Button> */}
+              </Card.Body>
+            </Card>
+          </Row>
+          <Row className="my-5">
+            <Map />
+          </Row>
+          <Row>
+            <ListGroup className="p-0">
+              <ListGroup.Item active>Προοδος Εργου</ListGroup.Item>
+              {project.progress.map((progr, index) => (
+                <ListGroup.Item key={index}>
+                  {progr.author} - {progr.date} - {progr.text}
+                </ListGroup.Item>
+              ))}
+              <div className="d-flex mt-2">
+                <FormControl
+                  type="search"
+                  placeholder="Νεο Σχολιο..."
+                  className="me-2"
+                  value={comment}
+                  onChange={(event) => setComment(event.target.value)}
+                />
+                <Button
+                  variant="outline-success"
+                  type="button"
+                  onClick={postComment}
+                >
+                  Αποστολη
+                </Button>
+              </div>
+            </ListGroup>
+          </Row>
+        </>
+      ) : (
+        <Alert variant="warning">Not Fount</Alert>
+      )}
     </Container>
   );
 };
